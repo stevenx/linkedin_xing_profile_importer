@@ -44,8 +44,8 @@ This automation tool helps professionals keep their LinkedIn and XING profiles u
 
 ### 1. Clone and Install
 ```bash
-git clone [repository-url]
-cd linkedincvimorter
+git clone https://github.com/stevenx/linkedin_xing_profile_importer.git
+cd linkedin_xing_profile_importer
 npm install
 ```
 
