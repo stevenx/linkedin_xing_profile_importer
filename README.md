@@ -60,6 +60,7 @@ Edit `.env` with your social network credentials:
 # LinkedIn Credentials
 LINKEDIN_EMAIL=your.email@example.com
 LINKEDIN_PASSWORD=your_linkedin_password
+LINKEDIN_PROFILE_SLUG=your-profile-slug  # The part after linkedin.com/in/
 
 # XING Credentials
 XING_EMAIL=your.email@example.com

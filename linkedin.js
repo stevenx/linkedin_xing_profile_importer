@@ -7,12 +7,15 @@ async function main() {
   console.log('============================\n');
 
   // Check environment variables
-  if (!process.env.LINKEDIN_EMAIL || !process.env.LINKEDIN_PASSWORD) {
-    console.error('❌ Error: LINKEDIN_EMAIL and LINKEDIN_PASSWORD must be set in .env file');
+  if (!process.env.LINKEDIN_EMAIL || !process.env.LINKEDIN_PASSWORD || !process.env.LINKEDIN_PROFILE_SLUG) {
+    console.error('❌ Error: LINKEDIN_EMAIL, LINKEDIN_PASSWORD and LINKEDIN_PROFILE_SLUG must be set in .env file');
     console.log('Please create a .env file with your LinkedIn credentials');
+    console.log('LINKEDIN_PROFILE_SLUG is the part after linkedin.com/in/ in your profile URL');
     console.log('See .env.example for reference');
     process.exit(1);
   }
+
+  const profileSlug = process.env.LINKEDIN_PROFILE_SLUG;
 
   // Parse CV
   const cvParser = new CVParser('./cv.md');
@@ -66,7 +69,7 @@ async function main() {
       
       // Go to add experience form
       console.log('\nGoing to add experience form...');
-      await page.goto('https://www.linkedin.com/in/steven-schulz-hamburg/add-edit/POSITION/');
+      await page.goto(`https://www.linkedin.com/in/${profileSlug}/add-edit/POSITION/`);
       await page.waitForTimeout(3000);
       
       console.log('Filling the form...\n');
@@ -225,7 +228,7 @@ async function main() {
     console.log('\nPlease review your LinkedIn profile.');
     
     // Final screenshot
-    await page.goto('https://www.linkedin.com/in/steven-schulz-hamburg/');
+    await page.goto(`https://www.linkedin.com/in/${profileSlug}/`);
     await page.waitForTimeout(3000);
     await page.screenshot({ path: 'all-experiences-added.png', fullPage: true });
     console.log('\nFinal screenshot: all-experiences-added.png');
